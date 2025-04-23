@@ -2,30 +2,8 @@ import AnnualDayCarousel from '@/components/AnnualDayCarousel';
 import PageTitle from '@/components/sections/pageTitle';
 import SectionName from '@/components/ui/sectionName';
 import Title from '@/components/ui/title';
-import { readdir } from 'fs/promises';
+import { readImages } from '@/lib/actions';
 import Image from 'next/image';
-import { join } from 'path';
-
-async function readImages() {
-  'use server';
-
-  const dir = join(process.cwd(), 'public', 'annual-day-24-pics');
-  const files = await readdir(dir);
-
-  const imageFiles = files.filter((file) =>
-    /\.(jpg|jpeg|png|webp)$/i.test(file)
-  );
-
-  const imagePaths = imageFiles.map((file) => {
-    const id = crypto.randomUUID();
-    // return `/annual-day-24-pics/${file}`;
-    return {
-      id: id,
-      path: `/annual-day-24-pics/${file}`,
-    };
-  });
-  return imagePaths;
-}
 
 export default async function AnnualDayPage({ params, searchParams }) {
   await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate a delay

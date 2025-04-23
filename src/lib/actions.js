@@ -34,3 +34,22 @@ export async function compressImage() {
   );
   return compressedImages;
 }
+
+export async function readImages() {
+  const dir = join(process.cwd(), 'public', 'annual-day-24-pics');
+  const files = await readdir(dir);
+
+  const imageFiles = files.filter((file) =>
+    /\.(jpg|jpeg|png|webp)$/i.test(file)
+  );
+
+  const imagePaths = imageFiles.map((file) => {
+    const id = crypto.randomUUID();
+    // return `/annual-day-24-pics/${file}`;
+    return {
+      id: id,
+      path: `/annual-day-24-pics/${file}`,
+    };
+  });
+  return imagePaths;
+}

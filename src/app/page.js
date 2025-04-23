@@ -1,4 +1,6 @@
-import AboutOne from '@/components/sections/abouts/aboutOne';
+import AboutPreSchool from '@/components/AboutPreSchool';
+import Founder from '@/components/Founder';
+import HeroCarousel from '@/components/HeroCarousel';
 import BlogsOne from '@/components/sections/blogs/blogsOne';
 import FaqComp from '@/components/sections/faqComp';
 import FooterOne from '@/components/sections/footers/footerOne';
@@ -10,8 +12,8 @@ import Programs from '@/components/sections/programs';
 import ServicesOne from '@/components/sections/services/servicesOne';
 import AgeOne from '@/components/sections/studentsAge/ageOne';
 import SuccessProjectOne from '@/components/sections/successProjects/successProjectOne';
-import Teams from '@/components/sections/teams/teams';
 import Testimonial from '@/components/sections/testimonial';
+import { readImages } from '@/lib/actions';
 
 export const metadata = {
   title: 'Seekers Bay Preschool',
@@ -19,19 +21,25 @@ export const metadata = {
     'Discover the benefits of early childhood learning at Seekers Bay Preschool. Enroll your child today for a bright future.',
 };
 
-const Home = () => {
+export default async function Home() {
+  await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate a delay
+  const images = await readImages();
+
   return (
     <>
       <HeaderOne />
       <main>
+        <HeroCarousel images={images} />
         <HeroOne />
         <SuccessProjectOne />
-        <AboutOne isAboutpage={false} />
+        <Founder />
+        <AboutPreSchool />
+        {/* <AboutOne isAboutpage={false} /> */}
         <Programs />
         <Gallery />
         <ServicesOne />
         <FaqComp />
-        <Teams />
+        {/* <Teams /> */}
         <AgeOne />
         <Testimonial />
         <BlogsOne />
@@ -40,6 +48,4 @@ const Home = () => {
       <FooterOne />
     </>
   );
-};
-
-export default Home;
+}
