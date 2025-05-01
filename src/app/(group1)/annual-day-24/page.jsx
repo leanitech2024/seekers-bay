@@ -1,4 +1,4 @@
-import AnnualDayCarousel from '@/components/AnnualDayCarousel';
+// import AnnualDayCarousel from '@/components/AnnualDayCarousel';
 import PageTitle from '@/components/sections/pageTitle';
 import SectionName from '@/components/ui/sectionName';
 import Title from '@/components/ui/title';
@@ -25,7 +25,7 @@ export default async function AnnualDayPage({ params, searchParams }) {
             </Title>
           </div>
 
-          <AnnualDayCarousel images={images} />
+          {/* <AnnualDayCarousel images={images} /> */}
 
           <div
             className={
