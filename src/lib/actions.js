@@ -1,7 +1,8 @@
 'use server';
 
-import { mkdir, readdir } from 'fs/promises';
+import { mkdir, readdir, readFile } from 'fs/promises';
 import { join } from 'path';
+import { getPlaiceholder } from 'plaiceholder';
 import sharp from 'sharp';
 
 export async function compressImage() {
@@ -43,13 +44,65 @@ export async function readImages() {
     /\.(jpg|jpeg|png|webp)$/i.test(file)
   );
 
-  const imagePaths = imageFiles.map((file) => {
+  const imagePaths = imageFiles.map((imagePath) => {
     const id = crypto.randomUUID();
     // return `/annual-day-24-pics/${file}`;
     return {
       id: id,
-      path: `/annual-day-24-pics/${file}`,
+      path: `/annual-day-24-pics/${imagePath}`,
     };
   });
   return imagePaths;
+}
+
+export async function readImagesWithBlurData() {
+  const dir = join(process.cwd(), 'public', 'annual-day-24-pics');
+  const files = await readdir(dir);
+
+  const imageFiles = files.filter((file) =>
+    /\.(jpg|jpeg|png|webp)$/i.test(file)
+  );
+
+  // const src = 'https://images.unsplash.com/photo-1621961458348-f013d219b50c';
+
+  // const buffer = await fetch(src).then(async (res) =>
+  //   Buffer.from(await res.arrayBuffer())
+  // );
+
+  // const { base64 } = await getPlaiceholder(buffer);
+
+  // we have to return the image path and blurDataUrl
+  const imagePaths = await Promise.all(
+    imageFiles.map(async (filepath) => {
+      const eachfilePath = join(dir, filepath);
+      const file = await readFile(eachfilePath);
+      const { base64 } = await getPlaiceholder(file);
+      const id = crypto.randomUUID();
+      return {
+        id: id,
+        path: `/annual-day-24-pics/${filepath}`,
+        blurDataUrl: base64,
+      };
+    })
+  );
+
+  return imagePaths;
+
+  // const imagePaths = imageFiles.map((filepath) => {
+  //   // const eachfilePath = join(dir, filepath);
+
+  //   // const file = await readFile(eachfilePath);
+  //   // console.log(file);
+
+  //   // const { base64 } = await getPlaiceholder(file);
+
+  //   const id = crypto.randomUUID();
+  //   // return `/annual-day-24-pics/${file}`;
+  //   return {
+  //     id: id,
+  //     path: `/annual-day-24-pics/${filepath}`,
+  //     // blurDataUrl: base64,
+  //   };
+  // });
+  // return imagePaths;
 }

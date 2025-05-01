@@ -1,13 +1,21 @@
 // import AnnualDayCarousel from '@/components/AnnualDayCarousel';
+import { LazyAnnualGLightBox } from '@/components/lazy';
 import PageTitle from '@/components/sections/pageTitle';
 import SectionName from '@/components/ui/sectionName';
 import Title from '@/components/ui/title';
 import { readImages } from '@/lib/actions';
-import Image from 'next/image';
+import { Suspense } from 'react';
+// import Image from 'next/image';
+// import { extractImgSrc } from '@plaiceholder/tailwindcss/utils';
 
 export default async function AnnualDayPage({ params, searchParams }) {
-  await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate a delay
+  // await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate a delay
   const images = await readImages();
+
+  // const imageswithBlurData = await readImagesWithBlurData();
+
+  // console.log(imageswithBlurData[0]);
+  // await getDriveFiles();
 
   return (
     <main>
@@ -26,8 +34,11 @@ export default async function AnnualDayPage({ params, searchParams }) {
           </div>
 
           {/* <AnnualDayCarousel images={images} /> */}
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazyAnnualGLightBox images={images} />
+          </Suspense>
 
-          <div
+          {/* <div
             className={
               'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8'
             }>
@@ -48,7 +59,7 @@ export default async function AnnualDayPage({ params, searchParams }) {
                 />
               </figure>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </main>

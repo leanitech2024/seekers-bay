@@ -25,8 +25,8 @@ export default function HeroCarousel({ images }) {
       lazyPreloadPrevNext={2}
       edgeSwipeDetection={true}
       className='mySwiper aspect-video lg:aspect-[24/9]'>
-      {images.map((image) => (
-        <SwiperSlide key={image.id} className={'h-full w-full'}>
+      {images.map((image, idx) => (
+        <SwiperSlide key={idx} className={'h-full w-full'}>
           <Image
             src={image.path}
             alt={`hero-section-${image.id}`}
