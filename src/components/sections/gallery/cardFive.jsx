@@ -2,17 +2,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa6';
 
-const CardFour = ({ data_target }) => {
+export default function CardFive({ data_target }) {
   return (
     <div
       className={`grid lg:gap-7.5 gap-4 grid-cols-12 sm:grid-rows-[453px] top-0 left-0 transition-all duration-500 ${
-        data_target === 'jr-kg'
+        data_target === 'sr-kg'
           ? 'relative translate-y-0 visible opacity-100'
           : 'absolute translate-y-10 invisible opacity-0'
       }`}>
       <div className='sm:col-start-1 sm:col-end-8 col-span-full relative group/card max-h-[453px]'>
         <Image
-          src={'/learning-hub/learning-hub-5.webp'}
+          src={'/learning-hub/learning-hub-4.webp'}
           width={410}
           height={602}
           sizes='100vw'
@@ -38,7 +38,7 @@ const CardFour = ({ data_target }) => {
 
       <div className='sm:col-start-8 sm:col-end-13 col-span-full relative group/card max-h-[453px]'>
         <Image
-          src={'/learning-hub/learning-hub-4.webp'}
+          src={'/learning-hub/learning-hub-6.webp'}
           width={520}
           height={277}
           sizes='100vw'
@@ -63,6 +63,4 @@ const CardFour = ({ data_target }) => {
       </div>
     </div>
   );
-};
-
-export default CardFour;
+}

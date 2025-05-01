@@ -6,11 +6,11 @@ import FaqComp from '@/components/sections/faqComp';
 import FooterOne from '@/components/sections/footers/footerOne';
 import Gallery from '@/components/sections/gallery/gallery';
 import HeaderOne from '@/components/sections/headers/headerOne';
-import HeroOne from '@/components/sections/heros/heroOne';
+// import HeroOne from '@/components/sections/heros/heroOne';
 import NewsletterOne from '@/components/sections/newsletters/newsletterOne';
 import Programs from '@/components/sections/programs';
 import ServicesOne from '@/components/sections/services/servicesOne';
-import AgeOne from '@/components/sections/studentsAge/ageOne';
+// import AgeOne from '@/components/sections/studentsAge/ageOne';
 import SuccessProjectOne from '@/components/sections/successProjects/successProjectOne';
 import Testimonial from '@/components/sections/testimonial';
 import { readImages } from '@/lib/actions';
@@ -30,17 +30,17 @@ export default async function Home() {
       <HeaderOne />
       <main>
         <HeroCarousel images={images} />
-        <HeroOne />
-        <SuccessProjectOne />
-        <Founder />
-        <AboutPreSchool />
-        {/* <AboutOne isAboutpage={false} /> */}
         <Programs />
+        <AboutPreSchool />
         <Gallery />
+        {/* <HeroOne /> */}
+        <SuccessProjectOne />
+        {/* <AboutOne isAboutpage={false} /> */}
         <ServicesOne />
         <FaqComp />
         {/* <Teams /> */}
-        <AgeOne />
+        {/* <AgeOne /> */}
+        <Founder />
         <Testimonial />
         <BlogsOne />
         <NewsletterOne />
